@@ -164,8 +164,23 @@ ggplotly(
     labs(x = "Ano",
          y = "% Residual") +
     scale_fill_manual("Legenda:",
-                      values = c("dodgerblue", "green", "gold", "red")) +
+                      values = c("#414487FF", "#22A884FF", "#f9a242ff", "#de7065ff")) +
       #stat_summary(fun = "mean", geom = "point", shape = 23, size = 3, fill = "white")+
+      
+    stat_summary(aes(x = variable, y = value, label = round(..y..,2)),
+                 fun = median,
+                 geom = "text",
+                 position = position_nudge(y = -0.015),
+                 color = "azure",
+                 size = 4,
+                 #vjust = -1.4
+                 #hjust = -1.1
+                 ) +
+      stat_summary(aes(x = variable, y = value, label = round(..y..,2)),
+                   fun = median,
+                   geom = "point",
+                   color = "azure",
+                   size = 1) +
     theme_bw()
 )
 
